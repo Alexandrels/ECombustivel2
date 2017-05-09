@@ -13,4 +13,6 @@
     <string name="data_abastecimento">Data Abastecimento</string>
     <string name="total_litros_abastecido">Litros</string>
     <string name="loading">Aguarde...</string>
+    <string name="hello_world">Olá Mundo!</string>
+    <string name="msg">Permite essa porra!</string>
 </resources>

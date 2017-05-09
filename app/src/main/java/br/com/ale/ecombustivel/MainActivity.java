@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import br.com.ale.ecombustivel.UI.GeolocalizacaoFragment;
 import br.com.ale.ecombustivel.UI.ListaAbastecimentosFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             fragmentManager.beginTransaction().replace(R.id.container, new GmapFragment()).commit();
         } else if (id == R.id.nav_manage) {
-
+            fragmentManager.beginTransaction().replace(R.id.container, new GeolocalizacaoFragment()).commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
