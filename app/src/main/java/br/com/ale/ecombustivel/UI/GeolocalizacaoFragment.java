@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -15,13 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 
 import br.com.ale.ecombustivel.R;
 import br.com.ale.ecombustivel.RuntimePermission;
@@ -33,28 +32,26 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
         LocationListener {
 
     private static final String TAG = GeolocalizacaoFragment.class.getSimpleName();
-    private static final int REQUEST_LOCATION = 10;
+    private static final int MINHAS_PERMISSOES_REQUEST_FINE_LOCATION = 101;
+    private static final int MINHAS_PERMISSOES_REQUEST_COARSE_LOCATION = 102;
+    private boolean permissionIsGranted = false;
 
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private RuntimePermission runtimePermission;
+    private TextView tvCoordenadas;
 //    private GoogleMap mGoogleMap;
 //    private MapView mMapView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        runtimePermission = new RuntimePermission() {
-            @Override
-            public void onPermissonGranted(int requestCode) {
-
-            }
-        };
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        // mGoogleApiClient.connect();
 
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -66,23 +63,31 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // requestLocationUpdates();
         View rootView = inflater.inflate(R.layout.fragment_geolocalizacao, container, false);
+        tvCoordenadas = (TextView) rootView.findViewById(R.id.tv_last_location);
 
 //        mMapView = (MapView) rootView.findViewById(R.id.mapView);
 //        mMapView.onCreate(savedInstanceState);
 //        mMapView.onResume();
 
         //new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, R.string.msg, REQUEST_LOCATION
-        runtimePermission.onPermissonGranted(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET},R.string.msg,REQUEST_LOCATION);
 
         Log.d(TAG, "onCreateView");
         return rootView;
     }
 
+    // @Override
+    // public void onStart() {
+    //     super.onStart();
+    //     mGoogleApiClient.connect();
+    // }
+
     @Override
     public void onResume() {
         super.onResume();
         mGoogleApiClient.connect();
+        //aqui vai um metodo que verifica se tem a permissao e o chama
 //        mMapView.onResume();
 //        setUpMap();
 
@@ -92,10 +97,12 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
     @Override
     public void onPause() {
         super.onPause();
-        if (mGoogleApiClient.isConnected())
+        if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
-//        mMapView.onPause();
-
+        }
+        // if (permissionIsGranted) {
+        //     LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        // }
         Log.d(TAG, "onPause");
     }
 
@@ -117,16 +124,28 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
 
     @Override
     public void onConnected(Bundle bundle) {
-        if (!hasPermission(Manifest.permission.ACCESS_FINE_LOCATION))
-            return;
+        requestLocationUpdates();
+        Log.d(TAG, "onConnected");
+    }
 
+    private void requestLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MINHAS_PERMISSOES_REQUEST_FINE_LOCATION);
+            return;
+        }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (location == null)
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         else
             handleNewLocation(location);
-
-        Log.d(TAG, "onConnected");
     }
 
     @Override
@@ -158,7 +177,8 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
     }
 
     private void handleNewLocation(Location location) {
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        // LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        tvCoordenadas.setText(Html.fromHtml("Localização: " + location.getLatitude() + "<br/>" + location.getLongitude()));
 //
 //        MarkerOptions options = new MarkerOptions()
 //                .position(latLng)
@@ -172,20 +192,23 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
         return ContextCompat.checkSelfPermission(getActivity(), permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == REQUEST_LOCATION) {
-            if (grantResults.length == 1
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // We can now safely use the API we requested access to
-                Location myLocation =
-                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            } else {
-                // Permission was denied or request was cancelled
-            }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MINHAS_PERMISSOES_REQUEST_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //permitiu
+                    permissionIsGranted = true;
+                } else {
+                    //nao tem permissao
+                    permissionIsGranted = false;
+                    Toast.makeText(getActivity().getApplicationContext(), "Esta app quer a porra da permissao master", Toast.LENGTH_SHORT).show();
+
+                }
+                break;
+            case MINHAS_PERMISSOES_REQUEST_COARSE_LOCATION:
+                break;
         }
     }
-
-
 }
