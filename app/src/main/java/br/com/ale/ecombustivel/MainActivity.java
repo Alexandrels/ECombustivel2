@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.ale.ecombustivel.UI.GeolocalizacaoFragment;
+import br.com.ale.ecombustivel.UI.GeolocalizacaoFragment2;
 import br.com.ale.ecombustivel.UI.ListaAbastecimentosFragment;
+import br.com.ale.ecombustivel.UI.LocalizadorEnderecoFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,9 +87,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             fragmentManager.beginTransaction().replace(R.id.container, new GeolocalizacaoFragment()).commit();
         } else if (id == R.id.nav_share) {
-
+            fragmentManager.beginTransaction().replace(R.id.container, new GeolocalizacaoFragment2()).commit();
         } else if (id == R.id.nav_send) {
-
+            fragmentManager.beginTransaction().replace(R.id.container, new LocalizadorEnderecoFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
