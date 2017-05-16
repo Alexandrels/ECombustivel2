@@ -70,6 +70,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#999" />
+                <Button
+                    android:id="@+id/bt_coord_sem_net"
+                    android:text="Buscar coordenadas offline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+
+                <View
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999" />
 
                 <TextView
                     android:id="@+id/tv_address_location"

@@ -204,10 +204,17 @@ public class GeolocalizacaoFragment extends Fragment implements GoogleApiClient.
                     //nao tem permissao
                     permissionIsGranted = false;
                     Toast.makeText(getActivity().getApplicationContext(), "Esta app quer a porra da permissao master", Toast.LENGTH_SHORT).show();
-
                 }
                 break;
             case MINHAS_PERMISSOES_REQUEST_COARSE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //permitiu
+                    permissionIsGranted = true;
+                } else {
+                    //nao tem permissao
+                    permissionIsGranted = false;
+                    Toast.makeText(getActivity().getApplicationContext(), "Esta app quer a porra da permissao GPS", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
