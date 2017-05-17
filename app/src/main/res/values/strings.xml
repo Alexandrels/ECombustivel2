@@ -15,4 +15,6 @@
     <string name="loading">Aguarde...</string>
     <string name="hello_world">Olá Mundo!</string>
     <string name="msg">Permite essa porra!</string>
+    <string name="sign_out">Deslogar</string>
+    <string name="disconnect">Desconectar</string>
 </resources>
