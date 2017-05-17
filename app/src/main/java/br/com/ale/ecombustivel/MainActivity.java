@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             fragmentManager.beginTransaction().replace(R.id.container, new GeolocalizacaoFragment()).commit();
         } else if (id == R.id.nav_share) {
-            fragmentManager.beginTransaction().replace(R.id.container, new GeolocalizacaoFragment2()).commit();
+            fragmentManager.beginTransaction().replace(R.id.container, new GoogleAuthFragment()).commit();
         } else if (id == R.id.nav_send) {
             fragmentManager.beginTransaction().replace(R.id.container, new LocalizadorEnderecoFragment()).commit();
         }
