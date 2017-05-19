@@ -43,6 +43,7 @@ public class GoogleAuthFragment extends Fragment implements
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private TextView mDetailTextView;
+    private String webClientId = "1021413119568-cbfl24gbvkdc9lkv8kasr7l0p7kqct01.apps.googleusercontent.com";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class GoogleAuthFragment extends Fragment implements
         // [START config_signin]
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(webClientId)
                 .requestEmail()
                 .build();
         // [END config_signin]

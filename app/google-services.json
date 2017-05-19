@@ -1,27 +1,31 @@
 {
   "project_info": {
-    "project_number": "411936629802",
-    "firebase_url": "https://ecombustivel-9a4f1.firebaseio.com",
-    "project_id": "ecombustivel-9a4f1",
-    "storage_bucket": "ecombustivel-9a4f1.appspot.com"
+    "project_number": "1021413119568",
+    "firebase_url": "https://ecombustivel-168118.firebaseio.com",
+    "project_id": "ecombustivel-168118",
+    "storage_bucket": "ecombustivel-168118.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:411936629802:android:7e3c8df44a4afcd7",
+        "mobilesdk_app_id": "1:1021413119568:android:7e3c8df44a4afcd7",
         "android_client_info": {
           "package_name": "br.com.ale.ecombustivel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "411936629802-r7pfiakc7rl8fh8auf1pcmjbkgm0hhvr.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "1021413119568-cbfl24gbvkdc9lkv8kasr7l0p7kqct01.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ale.ecombustivel",
+            "certificate_hash": "11e0568282b7864ab7413ce0e3d2a97cc9ac6c1d"
+          }
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDCNNiaXI_T3DrQnsXmABCQowk2wcxDJws"
+          "current_key": "AIzaSyB2iycjUhQA3YSaL6_pxgdqq1TZj02_1HA"
         }
       ],
       "services": {
@@ -29,7 +33,7 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
+          "status": 2,
           "other_platform_oauth_client": []
         },
         "ads_service": {
