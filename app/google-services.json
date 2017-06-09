@@ -15,17 +15,21 @@
       },
       "oauth_client": [
         {
-          "client_id": "1021413119568-cbfl24gbvkdc9lkv8kasr7l0p7kqct01.apps.googleusercontent.com",
+          "client_id": "1021413119568-p92e36if8tct52t2euuid5jau2mpd1ro.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.ale.ecombustivel",
             "certificate_hash": "11e0568282b7864ab7413ce0e3d2a97cc9ac6c1d"
           }
+        },
+        {
+          "client_id": "1021413119568-jndgc7sb62lggrpge2rmivk7hbvisd40.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB2iycjUhQA3YSaL6_pxgdqq1TZj02_1HA"
+          "current_key": "AIzaSyBqT5GB6XAM2Bm51q7xYUVhtGn6shtVxYg"
         }
       ],
       "services": {
@@ -34,7 +38,12 @@
         },
         "appinvite_service": {
           "status": 2,
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021413119568-jndgc7sb62lggrpge2rmivk7hbvisd40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

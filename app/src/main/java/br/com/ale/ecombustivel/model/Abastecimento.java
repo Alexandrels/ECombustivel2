@@ -17,6 +17,8 @@ public class Abastecimento extends RealmObject {
     private Double quantidadeLitros;
     private Long data;
 
+    public Abastecimento() {
+    }
 
     public Double getQuantidadeLitros() {
         return quantidadeLitros;

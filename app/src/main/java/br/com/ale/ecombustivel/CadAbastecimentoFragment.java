@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import br.com.ale.ecombustivel.helper.CadAbastecimentoHelper;
 import io.realm.Realm;
 
@@ -21,6 +24,7 @@ public class CadAbastecimentoFragment extends Fragment implements View.OnClickLi
     private CadAbastecimentoHelper helper;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class CadAbastecimentoFragment extends Fragment implements View.OnClickLi
         helper = new CadAbastecimentoHelper(view);
         btSalvar = (Button) view.findViewById(R.id.bt_salvar);
         btSalvar.setOnClickListener(this);
+
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
