@@ -43,7 +43,7 @@ public class GoogleAuthFragment extends Fragment implements
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private TextView mDetailTextView;
-    private String webClientId = "1021413119568-jndgc7sb62lggrpge2rmivk7hbvisd40.apps.googleusercontent.com";
+    private String webClientId = "552484052233-uqdr0bce486reg82m53a7tndggm37r88.apps.googleusercontent.com";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
