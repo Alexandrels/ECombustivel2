@@ -17,4 +17,9 @@
     <string name="msg">Permite essa porra!</string>
     <string name="sign_out">Deslogar</string>
     <string name="disconnect">Desconectar</string>
+
+    <!-- Tela Cad Local Abastecimento-->
+    <string name="preco_alcool">Preço Alcool</string>
+    <string name="preco_gasolina">Preço Gasolina</string>
+
 </resources>

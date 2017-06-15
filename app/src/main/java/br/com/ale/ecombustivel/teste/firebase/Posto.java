@@ -9,6 +9,8 @@ public class Posto {
     private String nome;
     private String latitude;
     private String longitude;
+    private Double precoAlcool;
+    private Double precoGasolina;
 
     public Posto() {
     }
@@ -35,5 +37,21 @@ public class Posto {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public Double getPrecoAlcool() {
+        return precoAlcool;
+    }
+
+    public void setPrecoAlcool(Double precoAlcool) {
+        this.precoAlcool = precoAlcool;
+    }
+
+    public Double getPrecoGasolina() {
+        return precoGasolina;
+    }
+
+    public void setPrecoGasolina(Double precoGasolina) {
+        this.precoGasolina = precoGasolina;
     }
 }
