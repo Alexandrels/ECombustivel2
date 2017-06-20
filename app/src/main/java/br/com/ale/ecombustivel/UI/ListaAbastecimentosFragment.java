@@ -27,9 +27,9 @@ import io.realm.RealmResults;
  * @author alexandre
  */
 public class ListaAbastecimentosFragment extends Fragment implements ClickRecyclerViewInterface {
+    RecyclerAdapterAbastecimentos adapter;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    RecyclerAdapterAbastecimentos adapter;
     private List<Abastecimento> abastecimentos = new ArrayList<>();
     private FloatingActionButton floatingActionButton;
     private Realm realm;
@@ -40,7 +40,7 @@ public class ListaAbastecimentosFragment extends Fragment implements ClickRecycl
         View abastecimentoView = inflater.inflate(R.layout.fragment_lista_abastecimentos, container, false);
         realm = Realm.getDefaultInstance();
         //e avisa o adapter que o conteúdo da lista foi alterado
-      //  adapter.notifyDataSetChanged();
+        //  adapter.notifyDataSetChanged();
         setaRecyclerView(abastecimentoView);
         setaButtons(abastecimentoView);
         listenersButtons();
@@ -48,11 +48,12 @@ public class ListaAbastecimentosFragment extends Fragment implements ClickRecycl
         return abastecimentoView;
     }
 
-    public void setaButtons(View activity){
+    public void setaButtons(View activity) {
 
         floatingActionButton = (FloatingActionButton) activity.findViewById(R.id.fab_fabteste);
 
     }
+
     public void setaRecyclerView(View activity) {
 
         //Aqui é instanciado o Recyclerview
@@ -90,11 +91,11 @@ public class ListaAbastecimentosFragment extends Fragment implements ClickRecycl
      * Chama os listeners para os botões
      */
     public void listenersButtons() {
-        final FragmentManager fragmentManager =  getFragmentManager();
+        final FragmentManager fragmentManager = getFragmentManager();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.beginTransaction().replace(R.id.container,new CadAbastecimentoFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.container, new CadAbastecimentoFragment()).commit();
 
             }
         });

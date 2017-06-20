@@ -21,5 +21,8 @@
     <!-- Tela Cad Local Abastecimento-->
     <string name="preco_alcool">Preço Alcool</string>
     <string name="preco_gasolina">Preço Gasolina</string>
+    <string name="cad_nome_posto">Nome do Posto</string>
+    <string name="cad_gasolina">Informe o preço da Gasolina</string>
+    <string name="cad_alcool">Informe preço Alcool</string>
 
 </resources>

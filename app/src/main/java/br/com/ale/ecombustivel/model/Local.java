@@ -18,7 +18,6 @@ public class Local extends RealmObject {
     private RealmList<Abastecimento> abastecimentos;
 
 
-
     public Integer getId() {
         return id;
     }

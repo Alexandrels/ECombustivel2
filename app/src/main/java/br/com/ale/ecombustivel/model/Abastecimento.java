@@ -20,6 +20,17 @@ public class Abastecimento extends RealmObject {
     public Abastecimento() {
     }
 
+    public static Long autoIncrementId() {
+        Long key = 1L;
+        Realm realm = Realm.getDefaultInstance();
+        try {
+            key = realm.where(Abastecimento.class).max("id").longValue() + 1;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return key;
+    }
+
     public Double getQuantidadeLitros() {
         return quantidadeLitros;
     }
@@ -42,18 +53,6 @@ public class Abastecimento extends RealmObject {
 
     public void setValorPago(Double valorPago) {
         this.valorPago = valorPago;
-    }
-
-
-    public static Long autoIncrementId() {
-        Long key = 1L;
-        Realm realm = Realm.getDefaultInstance();
-        try {
-            key = realm.where(Abastecimento.class).max("id").longValue() + 1;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return key;
     }
 
     public Long getId() {

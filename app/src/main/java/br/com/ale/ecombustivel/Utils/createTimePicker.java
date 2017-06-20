@@ -23,7 +23,7 @@ public class createTimePicker implements View.OnFocusChangeListener, View.OnClic
     private String title;
     private TimePickerDialog timePickerDialog;
 
-    public createTimePicker(EditText editText, Context ctx, String title){
+    public createTimePicker(EditText editText, Context ctx, String title) {
         this.editText = editText;
         this.editText.setOnFocusChangeListener(this);
         this.ctx = ctx;
@@ -33,7 +33,7 @@ public class createTimePicker implements View.OnFocusChangeListener, View.OnClic
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        this.editText.setText( hourOfDay + ":" + minute);
+        this.editText.setText(hourOfDay + ":" + minute);
 
     }
 
@@ -41,14 +41,14 @@ public class createTimePicker implements View.OnFocusChangeListener, View.OnClic
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         // TODO Auto-generated method stub
-        if(hasFocus){
+        if (hasFocus) {
             /*timePickerDialog = new TimePickerDialog(ctx, this, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH));*/
 
             int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
             int minute = myCalendar.get(Calendar.MINUTE);
-            timePickerDialog =  new TimePickerDialog(ctx, 3,this, hour, minute, true);
+            timePickerDialog = new TimePickerDialog(ctx, 3, this, hour, minute, true);
             timePickerDialog.setTitle(this.title);
             timePickerDialog.show();
         }
@@ -57,7 +57,7 @@ public class createTimePicker implements View.OnFocusChangeListener, View.OnClic
 
     @Override
     public void onClick(View v) {
-        timePickerDialog = new TimePickerDialog(ctx,3, this,
+        timePickerDialog = new TimePickerDialog(ctx, 3, this,
                 myCalendar.get(Calendar.HOUR_OF_DAY), myCalendar.get(Calendar.MINUTE), true);
 
         ///TimePickerDialog(Context context, TimePickerDialog.OnTimeSetListener listener, int hourOfDay, int minute, boolean is24HourView)

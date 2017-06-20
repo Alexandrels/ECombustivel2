@@ -11,15 +11,14 @@ import android.net.NetworkInfo;
 public class DetectaConexao {
     private Context _context;
 
-    public DetectaConexao(Context context){
+    public DetectaConexao(Context context) {
         this._context = context;
     }
 
-    public boolean existeConexao(){
+    public boolean existeConexao() {
         ConnectivityManager connectivity = (ConnectivityManager)
                 _context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null)
-        {
+        if (connectivity != null) {
             NetworkInfo netInfo = connectivity.getActiveNetworkInfo();
 
             // Se não existe nenhum tipo de conexão retorna false
@@ -39,7 +38,7 @@ public class DetectaConexao {
             } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }

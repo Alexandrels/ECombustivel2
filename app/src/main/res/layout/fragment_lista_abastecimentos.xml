@@ -1,13 +1,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="br.com.ale.ecombustivel.UI.ListaAbastecimentosFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.ale.ecombustivel.UI.ListaAbastecimentosFragment">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_abastecimentos"
@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:elevation="0dp"
-            android:paddingBottom="80dp"/>
+            android:paddingBottom="80dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_fabteste"
@@ -24,7 +24,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="18dp"
-            android:clickable="true"/>
+            android:clickable="true" />
 
     </RelativeLayout>
 

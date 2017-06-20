@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import br.com.ale.ecombustivel.helper.CadAbastecimentoHelper;
 import io.realm.Realm;
 
@@ -22,7 +19,6 @@ public class CadAbastecimentoFragment extends Fragment implements View.OnClickLi
     private Realm realm;
     private Button btSalvar;
     private CadAbastecimentoHelper helper;
-
 
 
     @Override
@@ -52,7 +48,7 @@ public class CadAbastecimentoFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.bt_salvar) {
-            helper.salvar(getActivity(),realm);
+            helper.salvar(getActivity(), realm);
 
         }
 

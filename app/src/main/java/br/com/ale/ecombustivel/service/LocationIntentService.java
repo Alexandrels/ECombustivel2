@@ -38,39 +38,34 @@ public class LocationIntentService extends IntentService {
 
 
         try {
-            if(type == 2 || address == null) {
+            if (type == 2 || address == null) {
                 list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            }
-            else{
+            } else {
                 list = (ArrayList<Address>) geocoder.getFromLocationName(address, 1);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             error = "Network problem";
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             error = "Illegal arguments";
         }
 
 
-        if(list != null && list.size() > 0){
+        if (list != null && list.size() > 0) {
             Address a = list.get(0);
 
 
-            if(type == 2 || address == null){
-                for(int i = 0, tam = a.getMaxAddressLineIndex(); i < tam; i++){
+            if (type == 2 || address == null) {
+                for (int i = 0, tam = a.getMaxAddressLineIndex(); i < tam; i++) {
                     resultAddress += a.getAddressLine(i);
                     resultAddress += i < tam - 1 ? ", " : "";
                 }
-            }
-            else{
-                resultAddress += a.getLatitude()+"\n";
+            } else {
+                resultAddress += a.getLatitude() + "\n";
                 resultAddress += a.getLongitude();
             }
-        }
-        else{
+        } else {
             resultAddress = error;
         }
 

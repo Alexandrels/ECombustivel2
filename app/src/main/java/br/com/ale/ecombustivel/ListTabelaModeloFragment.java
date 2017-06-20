@@ -23,9 +23,9 @@ import io.realm.RealmResults;
  */
 
 public class ListTabelaModeloFragment extends Fragment implements ClickRecyclerViewInterface {
+    RecyclerTesteAdapter adapter;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    RecyclerTesteAdapter adapter;
     private List<Abastecimento> pessoasListas = new ArrayList<>();
     private FloatingActionButton floatingActionButton;
     private Realm realm;

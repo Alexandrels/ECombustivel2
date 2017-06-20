@@ -1,8 +1,6 @@
 package br.com.ale.ecombustivel;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -31,7 +29,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class GoogleAuthFragment extends Fragment implements
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener{
+        View.OnClickListener {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -137,7 +135,7 @@ public class GoogleAuthFragment extends Fragment implements
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         // [START_EXCLUDE silent]
-       // showProgressDialog();
+        // showProgressDialog();
         // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -159,7 +157,7 @@ public class GoogleAuthFragment extends Fragment implements
                         }
 
                         // [START_EXCLUDE]
-                       // hideProgressDialog();
+                        // hideProgressDialog();
                         // [END_EXCLUDE]
                     }
                 });

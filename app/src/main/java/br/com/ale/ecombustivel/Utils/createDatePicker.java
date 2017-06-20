@@ -27,13 +27,13 @@ public class createDatePicker implements View.OnFocusChangeListener, View.OnClic
 
     /**
      * Instaciar um picker de data
+     *
      * @param editText
      * @param ctx
      * @param title
-     * @param dataMinima
-     *              aparteir de que dia pode-se seleionar uma data
+     * @param dataMinima aparteir de que dia pode-se seleionar uma data
      */
-    public createDatePicker(EditText editText, Context ctx, String title, Long dataMinima){
+    public createDatePicker(EditText editText, Context ctx, String title, Long dataMinima) {
         this.editText = editText;
         this.editText.setOnFocusChangeListener(this);
         this.ctx = ctx;
@@ -43,7 +43,7 @@ public class createDatePicker implements View.OnFocusChangeListener, View.OnClic
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)     {
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         // this.editText.setText();
 
         String myFormat = "dd/MM/yyyy"; //In which you need put here
@@ -59,7 +59,7 @@ public class createDatePicker implements View.OnFocusChangeListener, View.OnClic
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         // TODO Auto-generated method stub
-        if(hasFocus){
+        if (hasFocus) {
             datePickerDialog = new DatePickerDialog(ctx, this,
                     myCalendar.get(Calendar.YEAR),
                     myCalendar.get(Calendar.MONTH),

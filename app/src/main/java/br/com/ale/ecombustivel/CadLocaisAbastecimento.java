@@ -1,7 +1,5 @@
 package br.com.ale.ecombustivel;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,9 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.ale.ecombustivel.R;
-import br.com.ale.ecombustivel.model.Abastecimento;
 import br.com.ale.ecombustivel.teste.firebase.Posto;
-import io.realm.Realm;
 
 public class CadLocaisAbastecimento extends Fragment {
 

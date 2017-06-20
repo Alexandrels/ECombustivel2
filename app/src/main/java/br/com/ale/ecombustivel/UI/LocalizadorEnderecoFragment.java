@@ -39,14 +39,13 @@ import de.greenrobot.event.EventBus;
 
 public class LocalizadorEnderecoFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, LocationListener {
+    public static final String LOCATION = "location";
+    public static final String TYPE = "type";
+    public static final String ADDRESS = "address";
     private static final String TAG = GeolocalizacaoFragment.class.getSimpleName();
     private static final int MINHAS_PERMISSOES_REQUEST_FINE_LOCATION = 101;
     private static final int MINHAS_PERMISSOES_REQUEST_COARSE_LOCATION = 102;
     private boolean permissionIsGranted = false;
-    public static final String LOCATION = "location";
-    public static final String TYPE = "type";
-    public static final String ADDRESS = "address";
-
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
 

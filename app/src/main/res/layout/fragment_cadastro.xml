@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="br.com.ale.ecombustivel.CadastroFragment"    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.ale.ecombustivel.CadastroFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:id="@+id/ed_preco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal|number"/>
+                android:inputType="numberDecimal|number" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -37,7 +37,7 @@
                 android:id="@+id/ed_total_abastecido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal|number"/>
+                android:inputType="numberDecimal|number" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Salvar"
             android:textColor="@android:color/background_light"
-            android:theme="@style/BtnAcoes"/>
+            android:theme="@style/BtnAcoes" />
     </LinearLayout>
 
 </FrameLayout>

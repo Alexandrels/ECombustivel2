@@ -14,10 +14,10 @@ public class FormatarData {
     static DateFormat dfHora = new SimpleDateFormat("HH:mm");
 
 
-
     public static SimpleDateFormat getFormato() {
         return formato;
     }
+
     public static SimpleDateFormat getFormatoHora() {
         return formatoHora;
     }
@@ -26,12 +26,12 @@ public class FormatarData {
     public static DateFormat getDf() {
         return df;
     }
-    public static DateFormat getDfHora() {
-        return dfHora;
-    }
-
 
     public static void setDf(DateFormat df) {
         FormatarData.df = df;
+    }
+
+    public static DateFormat getDfHora() {
+        return dfHora;
     }
 }
