@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.ale.ecombustivel.Utils.CalculaPontosProximos;
 import br.com.ale.ecombustivel.Utils.Localizador;
 import br.com.ale.ecombustivel.teste.firebase.Posto;
 
@@ -40,6 +50,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference postoReferencia = databaseReference.child("locaisAbastecimentos");
     private FirebaseAuth mAuth;
+    private List<Posto> pontosComparados;
 
     @Nullable
     @Override
@@ -52,12 +63,14 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pontosComparados = new ArrayList<>();
         //SupportMapFragment fragment =(SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Toast.makeText(getActivity(), "Favor logar com sua conta Google+", Toast.LENGTH_SHORT).show();
             return;
         }
+        carregaPontosNoMapa();
         MapFragment fragment = (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map);
         fragment.getMapAsync(this);
 
@@ -111,7 +124,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getActivity(), "Pressionado Botão SIM", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getActivity(), "Pressionado Botão SIM", Toast.LENGTH_SHORT).show();
                                 MarkerOptions marcador = new MarkerOptions().position(pontoDoMarker).title("Posto " + edNomePosto.getText().toString()).snippet("Gasolina R$" + edPrecoGasolina.getText() + " Alcool R$" + edPrecoAlcool.getText());
                                 mMap.addMarker(marcador);
                                 Posto posto = new Posto();
@@ -124,6 +137,9 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
                                 chaveId = posto.getLatitude() + posto.getLongitude();
                                 chaveId = chaveId.replace("-", "");
                                 chaveId = chaveId.replace(".", "");
+                                posto.setUid(chaveId);
+
+                                new CalculaPontosProximos(posto, postoReferencia,pontosComparados).removePontosProximosAoPontoReferencia();
 
                                 postoReferencia.child(chaveId.trim()).setValue(posto);
                             }
@@ -169,5 +185,54 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     public void centralizaNo(LatLng local) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(local, 17));
     }
+
+    public void carregaPontosNoMapa() {
+        pontosComparados = new ArrayList<>();
+        postoReferencia.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+                Posto posto = dataSnapshot.getValue(Posto.class);
+                pontosComparados.add(posto);
+                LatLng latLng = new LatLng(Double.parseDouble(posto.getLatitude()), Double.parseDouble(posto.getLongitude()));
+                MarkerOptions marcador = new MarkerOptions().position(latLng).title("Posto " + posto.getNome()).snippet(" Alcool R$" + posto.getPrecoAlcool().toString() + "Gasolina R$" + posto.getPrecoGasolina().toString());
+                mMap.addMarker(marcador);
+
+            }
+
+            @Override
+            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+//                Location childLocation = dataSnapshot.getValue(Location.class);
+//                Marker oldMarker = userMarkers.get(dataSnapshot.getKey());
+//                oldMarker.remove();
+//                LatLng childPos = new LatLng(childLocation.getLat(), childLocation.getLang());
+//                MarkerOptions markerOptions = new MarkerOptions().position(childPos);
+//                Marker marker = mMap.addMarker(markerOptions);
+//                userMarkers.put(dataSnapshot.getKey(), marker);
+            }
+
+            @Override
+            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
+//                Marker oldMarker = userMarkers.get(dataSnapshot.getKey());
+//                oldMarker.remove();
+//                userMarkers.remove(dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+//                Posto post = dataSnapshot.getValue(Posto.class);
+//                for (Posto posto : postos) {
+//                    LatLng latLng = new LatLng(Double.parseDouble(posto.getLatitude()), Double.parseDouble(posto.getLongitude()));
+//                    MarkerOptions marcador = new MarkerOptions().position(latLng).title("Posto " + posto.getNome()).snippet(" Alcool R$" + posto.getPrecoAlcool().toString() + "Gasolina R$" + posto.getPrecoGasolina().toString());
+//                    mMap.addMarker(marcador);
+//                }
 
 }

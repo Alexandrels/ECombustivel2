@@ -49,9 +49,7 @@ public class ListaAbastecimentosFragment extends Fragment implements ClickRecycl
     }
 
     public void setaButtons(View activity) {
-
         floatingActionButton = (FloatingActionButton) activity.findViewById(R.id.fab_fabteste);
-
     }
 
     public void setaRecyclerView(View activity) {

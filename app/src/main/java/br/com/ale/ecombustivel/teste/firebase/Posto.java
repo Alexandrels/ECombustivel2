@@ -6,6 +6,8 @@ package br.com.ale.ecombustivel.teste.firebase;
 
 public class Posto {
 
+
+    public String uid;
     private String nome;
     private String latitude;
     private String longitude;
@@ -15,6 +17,13 @@ public class Posto {
     public Posto() {
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
     public String getNome() {
         return nome;
     }
